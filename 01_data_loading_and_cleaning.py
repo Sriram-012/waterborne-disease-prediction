@@ -4,6 +4,10 @@ Dataset: Kaggle water_potability.csv
 Source: https://www.kaggle.com/datasets/adityakadiwal/water-potability
 Download: Go to the link above → Download → place water_potability.csv in this folder
 """
+import sys
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import pandas as pd
 import numpy as np
 

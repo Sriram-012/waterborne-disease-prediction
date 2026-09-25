@@ -2,6 +2,10 @@
 Step 2: Feature Engineering
 Derived features to improve model signal.
 """
+import sys
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import pandas as pd
 import numpy as np
 

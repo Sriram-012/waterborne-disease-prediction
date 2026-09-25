@@ -4,6 +4,10 @@ REALISTIC ACCURACY EXPECTATION: 62-68% on this dataset.
 Why? Because features have very weak correlation with potability in real data.
 Your synthetic 98% was because the fake data had artificial patterns.
 """
+import sys
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
