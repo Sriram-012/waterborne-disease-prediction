@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_13eefa5c7bdf0c1cae572b404dbe9b5c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>
+    
+    
+     <div style="position: fixed; 
+     bottom: 30px; left: 30px; width: 230px; height: 135px; 
+     background-color: white; border:2px solid grey; z-index:9999; font-size:12px;
+     padding: 10px; border-radius: 6px; opacity: 0.95; font-family: Arial;">
+     <b>Epidemiological Outbreak Risk</b><br>
+     <i style="background:red; width:12px; height:12px; float:left; margin-right:8px; border-radius:50%;"></i> Critical (Outbreak Imminent)<br>
+     <i style="background:orange; width:12px; height:12px; float:left; margin-right:8px; border-radius:50%;"></i> Moderate (Action Required)<br>
+     <i style="background:green; width:12px; height:12px; float:left; margin-right:8px; border-radius:50%;"></i> Low Risk (Water Safe)<br>
+     <hr style="margin: 5px 0;">
+     <small>PRJ_441 GIS Spatial Surveillance</small>
+     </div>
+     
+    
+            <div class="folium-map" id="map_13eefa5c7bdf0c1cae572b404dbe9b5c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_13eefa5c7bdf0c1cae572b404dbe9b5c = L.map(
+                "map_13eefa5c7bdf0c1cae572b404dbe9b5c",
+                {
+                    center: [12.9716, 77.5946],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_67b4c92dd322216dba0e99f35d6c4c9e = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_67b4c92dd322216dba0e99f35d6c4c9e.addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+    
+            var circle_marker_0b617cf3fbe1a83f08f5e5846467e4ab = L.circleMarker(
+                [12.9716, 77.5946],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+    
+        var popup_fd8d0a5c8dc4be97bbe98725ca946510 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_8cea2afcac5477b6d01bf51a28569fee = $(`<div id="html_8cea2afcac5477b6d01bf51a28569fee" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 310px; font-size: 13px; line-height: 1.4;">             <div style="background-color: #f0ad4e;                          color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 14px;">                 MODERATE RISK - MONITOR             </div>             <p style="margin: 8px 0 4px 0;"><strong>Station:</strong> Central Water Treatment Plant - Outlet (<code>STN-101</code>)</p>             <hr style="border: 0; border-top: 1px solid #ddd; margin: 6px 0;">             <table style="width: 100%; font-size: 12px; margin-bottom: 6px;">                 <tr><td><strong>Outbreak Prob:</strong></td><td style="color:orange; font-weight: bold;">57.0%</td></tr>                 <tr><td><strong>Turbidity:</strong></td><td>4.38 NTU</td></tr>                 <tr><td><strong>pH:</strong></td><td>6.35</td></tr>                 <tr><td><strong>Chloramines:</strong></td><td>9.63 ppm</td></tr>                 <tr><td><strong>Sulfate:</strong></td><td>364.5 mg/L</td></tr>             </table>             <div style="background-color: #f8f9fa; padding: 6px; border-left: 3px solid #0275d8; margin-bottom: 6px;">                 <strong>Suspected Pathogen Hazards:</strong><br>                 <span style="color: #333; font-size: 11px;">Acute gastrointestinal irritation / osmotic diarrhea</span>             </div>             <div style="background-color: #fff3cd; padding: 6px; border-left: 3px solid #ffc107; font-size: 11px;">                 <strong>Municipal Action Protocol:</strong><br>                 Dilute with alternate deep-aquifer reservoir supply.             </div>         </div>         </div>`)[0];
+                popup_fd8d0a5c8dc4be97bbe98725ca946510.setContent(html_8cea2afcac5477b6d01bf51a28569fee);
+            
+        
+
+        circle_marker_0b617cf3fbe1a83f08f5e5846467e4ab.bindPopup(popup_fd8d0a5c8dc4be97bbe98725ca946510)
+        ;
+
+        
+    
+    
+            circle_marker_0b617cf3fbe1a83f08f5e5846467e4ab.bindTooltip(
+                `<div>
+                     STN-101: Central Water Treatment Plant - Outlet [MODERATE RISK - MONITOR]
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_05db5b5c50c4f8d73228526b2bdfbe38 = L.circleMarker(
+                [12.99, 77.57],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+    
+        var popup_e2fef5cb0ff9117d6b83854ce28c0bdd = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_47c087e0e1b87bdb48ab76c4ec53c8e2 = $(`<div id="html_47c087e0e1b87bdb48ab76c4ec53c8e2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 310px; font-size: 13px; line-height: 1.4;">             <div style="background-color: #f0ad4e;                          color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 14px;">                 MODERATE RISK - MONITOR             </div>             <p style="margin: 8px 0 4px 0;"><strong>Station:</strong> Sector 4 High-Density Settlement Pipeline (<code>STN-102</code>)</p>             <hr style="border: 0; border-top: 1px solid #ddd; margin: 6px 0;">             <table style="width: 100%; font-size: 12px; margin-bottom: 6px;">                 <tr><td><strong>Outbreak Prob:</strong></td><td style="color:orange; font-weight: bold;">62.6%</td></tr>                 <tr><td><strong>Turbidity:</strong></td><td>4.50 NTU</td></tr>                 <tr><td><strong>pH:</strong></td><td>3.72</td></tr>                 <tr><td><strong>Chloramines:</strong></td><td>6.64 ppm</td></tr>                 <tr><td><strong>Sulfate:</strong></td><td>333.1 mg/L</td></tr>             </table>             <div style="background-color: #f8f9fa; padding: 6px; border-left: 3px solid #0275d8; margin-bottom: 6px;">                 <strong>Suspected Pathogen Hazards:</strong><br>                 <span style="color: #333; font-size: 11px;">Salmonella typhi (Typhoid), Rotavirus, Vibrio cholerae (Cholera)</span>             </div>             <div style="background-color: #fff3cd; padding: 6px; border-left: 3px solid #ffc107; font-size: 11px;">                 <strong>Municipal Action Protocol:</strong><br>                 Issue immediate boil-water advisory; accelerate secondary coagulation.             </div>         </div>         </div>`)[0];
+                popup_e2fef5cb0ff9117d6b83854ce28c0bdd.setContent(html_47c087e0e1b87bdb48ab76c4ec53c8e2);
+            
+        
+
+        circle_marker_05db5b5c50c4f8d73228526b2bdfbe38.bindPopup(popup_e2fef5cb0ff9117d6b83854ce28c0bdd)
+        ;
+
+        
+    
+    
+            circle_marker_05db5b5c50c4f8d73228526b2bdfbe38.bindTooltip(
+                `<div>
+                     STN-102: Sector 4 High-Density Settlement Pipeline [MODERATE RISK - MONITOR]
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0cf78efca63fc35ca56e7ac6e1311f38 = L.circleMarker(
+                [12.955, 77.64],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+    
+        var popup_d447fa5a7d9dd46bea46335e263a728e = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_964c4713fe1a7f2ac098c15fd4aa9682 = $(`<div id="html_964c4713fe1a7f2ac098c15fd4aa9682" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 310px; font-size: 13px; line-height: 1.4;">             <div style="background-color: #f0ad4e;                          color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 14px;">                 MODERATE RISK - MONITOR             </div>             <p style="margin: 8px 0 4px 0;"><strong>Station:</strong> East Lake Reservoir Intake (<code>STN-103</code>)</p>             <hr style="border: 0; border-top: 1px solid #ddd; margin: 6px 0;">             <table style="width: 100%; font-size: 12px; margin-bottom: 6px;">                 <tr><td><strong>Outbreak Prob:</strong></td><td style="color:orange; font-weight: bold;">60.3%</td></tr>                 <tr><td><strong>Turbidity:</strong></td><td>4.82 NTU</td></tr>                 <tr><td><strong>pH:</strong></td><td>5.40</td></tr>                 <tr><td><strong>Chloramines:</strong></td><td>10.06 ppm</td></tr>                 <tr><td><strong>Sulfate:</strong></td><td>328.4 mg/L</td></tr>             </table>             <div style="background-color: #f8f9fa; padding: 6px; border-left: 3px solid #0275d8; margin-bottom: 6px;">                 <strong>Suspected Pathogen Hazards:</strong><br>                 <span style="color: #333; font-size: 11px;">Salmonella typhi (Typhoid), Rotavirus, Vibrio cholerae (Cholera)</span>             </div>             <div style="background-color: #fff3cd; padding: 6px; border-left: 3px solid #ffc107; font-size: 11px;">                 <strong>Municipal Action Protocol:</strong><br>                 Issue immediate boil-water advisory; accelerate secondary coagulation.             </div>         </div>         </div>`)[0];
+                popup_d447fa5a7d9dd46bea46335e263a728e.setContent(html_964c4713fe1a7f2ac098c15fd4aa9682);
+            
+        
+
+        circle_marker_0cf78efca63fc35ca56e7ac6e1311f38.bindPopup(popup_d447fa5a7d9dd46bea46335e263a728e)
+        ;
+
+        
+    
+    
+            circle_marker_0cf78efca63fc35ca56e7ac6e1311f38.bindTooltip(
+                `<div>
+                     STN-103: East Lake Reservoir Intake [MODERATE RISK - MONITOR]
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_40cc4018d42c143bf31a5236eb9521a3 = L.circleMarker(
+                [13.03, 77.59],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+    
+        var popup_cb4b2c5c630d4c1719e1e39f094dd79d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0d15b528be3c6325134abed1cdb82809 = $(`<div id="html_0d15b528be3c6325134abed1cdb82809" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 310px; font-size: 13px; line-height: 1.4;">             <div style="background-color: #f0ad4e;                          color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 14px;">                 MODERATE RISK - MONITOR             </div>             <p style="margin: 8px 0 4px 0;"><strong>Station:</strong> North River Basin Catchment Well (<code>STN-104</code>)</p>             <hr style="border: 0; border-top: 1px solid #ddd; margin: 6px 0;">             <table style="width: 100%; font-size: 12px; margin-bottom: 6px;">                 <tr><td><strong>Outbreak Prob:</strong></td><td style="color:orange; font-weight: bold;">61.1%</td></tr>                 <tr><td><strong>Turbidity:</strong></td><td>4.14 NTU</td></tr>                 <tr><td><strong>pH:</strong></td><td>5.70</td></tr>                 <tr><td><strong>Chloramines:</strong></td><td>7.18 ppm</td></tr>                 <tr><td><strong>Sulfate:</strong></td><td>333.1 mg/L</td></tr>             </table>             <div style="background-color: #f8f9fa; padding: 6px; border-left: 3px solid #0275d8; margin-bottom: 6px;">                 <strong>Suspected Pathogen Hazards:</strong><br>                 <span style="color: #333; font-size: 11px;">Salmonella typhi (Typhoid), Rotavirus, Vibrio cholerae (Cholera)</span>             </div>             <div style="background-color: #fff3cd; padding: 6px; border-left: 3px solid #ffc107; font-size: 11px;">                 <strong>Municipal Action Protocol:</strong><br>                 Issue immediate boil-water advisory; accelerate secondary coagulation.             </div>         </div>         </div>`)[0];
+                popup_cb4b2c5c630d4c1719e1e39f094dd79d.setContent(html_0d15b528be3c6325134abed1cdb82809);
+            
+        
+
+        circle_marker_40cc4018d42c143bf31a5236eb9521a3.bindPopup(popup_cb4b2c5c630d4c1719e1e39f094dd79d)
+        ;
+
+        
+    
+    
+            circle_marker_40cc4018d42c143bf31a5236eb9521a3.bindTooltip(
+                `<div>
+                     STN-104: North River Basin Catchment Well [MODERATE RISK - MONITOR]
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_25b02ee1300b3b29e5e4a1d3a6efd681 = L.circleMarker(
+                [12.92, 77.61],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+    
+        var popup_19a1f8b0d61b3cc6bedc2c46fd132240 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d1e04512a41d6b59ae04f37201a16de4 = $(`<div id="html_d1e04512a41d6b59ae04f37201a16de4" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 310px; font-size: 13px; line-height: 1.4;">             <div style="background-color: #d9534f;                          color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 14px;">                 CRITICAL OUTBREAK ALERT             </div>             <p style="margin: 8px 0 4px 0;"><strong>Station:</strong> Industrial Corridor Drainage Boundary (<code>STN-105</code>)</p>             <hr style="border: 0; border-top: 1px solid #ddd; margin: 6px 0;">             <table style="width: 100%; font-size: 12px; margin-bottom: 6px;">                 <tr><td><strong>Outbreak Prob:</strong></td><td style="color:red; font-weight: bold;">65.9%</td></tr>                 <tr><td><strong>Turbidity:</strong></td><td>5.00 NTU</td></tr>                 <tr><td><strong>pH:</strong></td><td>10.16</td></tr>                 <tr><td><strong>Chloramines:</strong></td><td>6.66 ppm</td></tr>                 <tr><td><strong>Sulfate:</strong></td><td>398.6 mg/L</td></tr>             </table>             <div style="background-color: #f8f9fa; padding: 6px; border-left: 3px solid #0275d8; margin-bottom: 6px;">                 <strong>Suspected Pathogen Hazards:</strong><br>                 <span style="color: #333; font-size: 11px;">Salmonella typhi (Typhoid), Rotavirus, Acute gastrointestinal irritation / osmotic diarrhea</span>             </div>             <div style="background-color: #fff3cd; padding: 6px; border-left: 3px solid #ffc107; font-size: 11px;">                 <strong>Municipal Action Protocol:</strong><br>                 Issue immediate boil-water advisory; accelerate secondary coagulation.             </div>         </div>         </div>`)[0];
+                popup_19a1f8b0d61b3cc6bedc2c46fd132240.setContent(html_d1e04512a41d6b59ae04f37201a16de4);
+            
+        
+
+        circle_marker_25b02ee1300b3b29e5e4a1d3a6efd681.bindPopup(popup_19a1f8b0d61b3cc6bedc2c46fd132240)
+        ;
+
+        
+    
+    
+            circle_marker_25b02ee1300b3b29e5e4a1d3a6efd681.bindTooltip(
+                `<div>
+                     STN-105: Industrial Corridor Drainage Boundary [CRITICAL OUTBREAK ALERT]
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cc002700c4fde89290d86d41f002c61e = L.circleMarker(
+                [12.91, 77.55],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+    
+        var popup_30df66d590976d33ea145a66499cfcf7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9009570bf79e277124dc9a1cfc2dee76 = $(`<div id="html_9009570bf79e277124dc9a1cfc2dee76" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 310px; font-size: 13px; line-height: 1.4;">             <div style="background-color: #d9534f;                          color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 14px;">                 CRITICAL OUTBREAK ALERT             </div>             <p style="margin: 8px 0 4px 0;"><strong>Station:</strong> South Agricultural Runoff Canal (<code>STN-106</code>)</p>             <hr style="border: 0; border-top: 1px solid #ddd; margin: 6px 0;">             <table style="width: 100%; font-size: 12px; margin-bottom: 6px;">                 <tr><td><strong>Outbreak Prob:</strong></td><td style="color:red; font-weight: bold;">67.4%</td></tr>                 <tr><td><strong>Turbidity:</strong></td><td>5.08 NTU</td></tr>                 <tr><td><strong>pH:</strong></td><td>8.53</td></tr>                 <tr><td><strong>Chloramines:</strong></td><td>7.48 ppm</td></tr>                 <tr><td><strong>Sulfate:</strong></td><td>308.4 mg/L</td></tr>             </table>             <div style="background-color: #f8f9fa; padding: 6px; border-left: 3px solid #0275d8; margin-bottom: 6px;">                 <strong>Suspected Pathogen Hazards:</strong><br>                 <span style="color: #333; font-size: 11px;">Salmonella typhi (Typhoid), Rotavirus, Vibrio cholerae (Cholera)</span>             </div>             <div style="background-color: #fff3cd; padding: 6px; border-left: 3px solid #ffc107; font-size: 11px;">                 <strong>Municipal Action Protocol:</strong><br>                 Issue immediate boil-water advisory; accelerate secondary coagulation.             </div>         </div>         </div>`)[0];
+                popup_30df66d590976d33ea145a66499cfcf7.setContent(html_9009570bf79e277124dc9a1cfc2dee76);
+            
+        
+
+        circle_marker_cc002700c4fde89290d86d41f002c61e.bindPopup(popup_30df66d590976d33ea145a66499cfcf7)
+        ;
+
+        
+    
+    
+            circle_marker_cc002700c4fde89290d86d41f002c61e.bindTooltip(
+                `<div>
+                     STN-106: South Agricultural Runoff Canal [CRITICAL OUTBREAK ALERT]
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a9053e65aa8e202df03171840263693c = L.circleMarker(
+                [12.98, 77.62],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+    
+        var popup_77c94f1383edbf20695e75133bb34238 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_98946db06c2f6af9e7f81406de837861 = $(`<div id="html_98946db06c2f6af9e7f81406de837861" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 310px; font-size: 13px; line-height: 1.4;">             <div style="background-color: #f0ad4e;                          color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 14px;">                 MODERATE RISK - MONITOR             </div>             <p style="margin: 8px 0 4px 0;"><strong>Station:</strong> Metropolitan Hospital District Feeder (<code>STN-107</code>)</p>             <hr style="border: 0; border-top: 1px solid #ddd; margin: 6px 0;">             <table style="width: 100%; font-size: 12px; margin-bottom: 6px;">                 <tr><td><strong>Outbreak Prob:</strong></td><td style="color:orange; font-weight: bold;">48.5%</td></tr>                 <tr><td><strong>Turbidity:</strong></td><td>2.93 NTU</td></tr>                 <tr><td><strong>pH:</strong></td><td>7.63</td></tr>                 <tr><td><strong>Chloramines:</strong></td><td>9.90 ppm</td></tr>                 <tr><td><strong>Sulfate:</strong></td><td>358.6 mg/L</td></tr>             </table>             <div style="background-color: #f8f9fa; padding: 6px; border-left: 3px solid #0275d8; margin-bottom: 6px;">                 <strong>Suspected Pathogen Hazards:</strong><br>                 <span style="color: #333; font-size: 11px;">Chemical toxicity hazard / chronic carcinogenic risk, Acute gastrointestinal irritation / osmotic diarrhea</span>             </div>             <div style="background-color: #fff3cd; padding: 6px; border-left: 3px solid #ffc107; font-size: 11px;">                 <strong>Municipal Action Protocol:</strong><br>                 Optimize precursor organic removal before chlorination.             </div>         </div>         </div>`)[0];
+                popup_77c94f1383edbf20695e75133bb34238.setContent(html_98946db06c2f6af9e7f81406de837861);
+            
+        
+
+        circle_marker_a9053e65aa8e202df03171840263693c.bindPopup(popup_77c94f1383edbf20695e75133bb34238)
+        ;
+
+        
+    
+    
+            circle_marker_a9053e65aa8e202df03171840263693c.bindTooltip(
+                `<div>
+                     STN-107: Metropolitan Hospital District Feeder [MODERATE RISK - MONITOR]
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8abcec37ce94fcd894a824b4be50a42b = L.circleMarker(
+                [12.965, 77.535],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+    
+        var popup_35ab28295301654cf78b009311b4e7ee = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f0772cb816d5b87e52e1506fb7b1e129 = $(`<div id="html_f0772cb816d5b87e52e1506fb7b1e129" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 310px; font-size: 13px; line-height: 1.4;">             <div style="background-color: #f0ad4e;                          color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 14px;">                 MODERATE RISK - MONITOR             </div>             <p style="margin: 8px 0 4px 0;"><strong>Station:</strong> Old City Sub-Surface Borewell Station (<code>STN-108</code>)</p>             <hr style="border: 0; border-top: 1px solid #ddd; margin: 6px 0;">             <table style="width: 100%; font-size: 12px; margin-bottom: 6px;">                 <tr><td><strong>Outbreak Prob:</strong></td><td style="color:orange; font-weight: bold;">59.7%</td></tr>                 <tr><td><strong>Turbidity:</strong></td><td>4.69 NTU</td></tr>                 <tr><td><strong>pH:</strong></td><td>5.87</td></tr>                 <tr><td><strong>Chloramines:</strong></td><td>6.60 ppm</td></tr>                 <tr><td><strong>Sulfate:</strong></td><td>352.6 mg/L</td></tr>             </table>             <div style="background-color: #f8f9fa; padding: 6px; border-left: 3px solid #0275d8; margin-bottom: 6px;">                 <strong>Suspected Pathogen Hazards:</strong><br>                 <span style="color: #333; font-size: 11px;">Salmonella typhi (Typhoid), Rotavirus, Acute gastrointestinal irritation / osmotic diarrhea</span>             </div>             <div style="background-color: #fff3cd; padding: 6px; border-left: 3px solid #ffc107; font-size: 11px;">                 <strong>Municipal Action Protocol:</strong><br>                 Issue immediate boil-water advisory; accelerate secondary coagulation.             </div>         </div>         </div>`)[0];
+                popup_35ab28295301654cf78b009311b4e7ee.setContent(html_f0772cb816d5b87e52e1506fb7b1e129);
+            
+        
+
+        circle_marker_8abcec37ce94fcd894a824b4be50a42b.bindPopup(popup_35ab28295301654cf78b009311b4e7ee)
+        ;
+
+        
+    
+    
+            circle_marker_8abcec37ce94fcd894a824b4be50a42b.bindTooltip(
+                `<div>
+                     STN-108: Old City Sub-Surface Borewell Station [MODERATE RISK - MONITOR]
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var heat_map_70f98496cf24f2c416946bb8b654ee10 = L.heatLayer(
+                [[12.9716, 77.5946, 0.570365461333578], [12.99, 77.57, 0.626487784682042], [12.955, 77.64, 0.6025972804449949], [13.03, 77.59, 0.6108030254794443], [12.92, 77.61, 0.6591112212445418], [12.91, 77.55, 0.6737542183158752], [12.98, 77.62, 0.4849020188014467], [12.965, 77.535, 0.5972556277530061]],
+                {
+  "minOpacity": 0.5,
+  "maxZoom": 13,
+  "radius": 25,
+  "blur": 18,
+}
+            );
+        
+    
+            heat_map_70f98496cf24f2c416946bb8b654ee10.addTo(map_13eefa5c7bdf0c1cae572b404dbe9b5c);
+        
+</script>
+</html>
