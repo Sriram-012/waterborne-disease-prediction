@@ -118,7 +118,35 @@ def generate_gis_surveillance_map(output_file: str = "outbreak_risk_map.html"):
     ]
 
     # Initialize Folium GIS map centered at regional surveillance center
-    m = folium.Map(location=[12.9716, 77.5946], zoom_start=12, tiles="OpenStreetMap")
+    m = folium.Map(location=[12.9716, 77.5946], zoom_start=12, tiles=None)
+
+    # 1. CartoDB Voyager (Crisp, modern, high-speed CDN, no 403 block on local files)
+    folium.TileLayer(
+        tiles="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+        attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        name="CartoDB Voyager (Default)",
+        subdomains="abcd",
+        max_zoom=19,
+        control=True
+    ).add_to(m)
+
+    # 2. Esri World Street Map (Enterprise GIS standard, no 403 block on local files)
+    folium.TileLayer(
+        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+        attr="Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS",
+        name="Esri Street Map",
+        max_zoom=18,
+        control=True
+    ).add_to(m)
+
+    # 3. Satellite Imagery
+    folium.TileLayer(
+        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        attr="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS",
+        name="Satellite Imagery",
+        max_zoom=18,
+        control=True
+    ).add_to(m)
 
     # Add heatmap layer for outbreak intensity
     heat_data = []
@@ -190,6 +218,9 @@ def generate_gis_surveillance_map(output_file: str = "outbreak_risk_map.html"):
      </div>
      '''
     m.get_root().html.add_child(folium.Element(legend_html))
+
+    # Add Interactive Layer Control
+    folium.LayerControl(position='topright', collapsed=False).add_to(m)
 
     m.save(output_file)
     print(f"[GIS Engine] [OK] Outbreak risk surveillance map successfully generated: '{output_file}'")
