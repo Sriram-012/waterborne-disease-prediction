@@ -1,0 +1,84 @@
+{
+    "feature_cols": [
+        "ph",
+        "Hardness",
+        "Solids",
+        "Chloramines",
+        "Sulfate",
+        "Conductivity",
+        "Organic_carbon",
+        "Trihalomethanes",
+        "Turbidity",
+        "CRI",
+        "ph_deviation"
+    ],
+    "target_col": "Potability",
+    "cv_results": {
+        "Random Forest": {
+            "Accuracy": 0.6477452988270341,
+            "Accuracy_Std": 0.010669022393518555,
+            "Precision": 0.5587390939142344,
+            "Recall": 0.4726072303921569,
+            "F1_Score": 0.5110800903164727,
+            "ROC_AUC": 0.6718801961245024
+        },
+        "Gradient Boosting": {
+            "Accuracy": 0.6544568050642339,
+            "Accuracy_Std": 0.009628748718762433,
+            "Precision": 0.608652044643429,
+            "Recall": 0.32393995098039213,
+            "F1_Score": 0.42172711927089496,
+            "ROC_AUC": 0.6499469055220771
+        },
+        "Extra Trees": {
+            "Accuracy": 0.6379789610873209,
+            "Accuracy_Std": 0.011927174287987752,
+            "Precision": 0.5420240677610625,
+            "Recall": 0.47576286764705883,
+            "F1_Score": 0.5059108528914639,
+            "ROC_AUC": 0.6633607510273847
+        },
+        "Logistic Regression": {
+            "Accuracy": 0.49267780673989947,
+            "Accuracy_Std": 0.012374426093832911,
+            "Precision": 0.39588955373613166,
+            "Recall": 0.569641544117647,
+            "F1_Score": 0.4670074670269071,
+            "ROC_AUC": 0.5281432880224458
+        }
+    },
+    "holdout_metrics": {
+        "accuracy": 0.6295731707317073,
+        "precision_safe": 0.5320197044334976,
+        "recall_safe": 0.421875,
+        "f1_safe": 0.47058823529411764,
+        "precision_unsafe": 0.673289183222958,
+        "recall_unsafe": 0.7625,
+        "f1_unsafe": 0.7151230949589683,
+        "roc_auc": 0.6622753906250001,
+        "confusion_matrix": [
+            [
+                305,
+                95
+            ],
+            [
+                148,
+                108
+            ]
+        ]
+    },
+    "feature_importances": {
+        "Sulfate": 0.15642304941584603,
+        "ph": 0.12167647205989171,
+        "Hardness": 0.11265281868112044,
+        "Chloramines": 0.10086904589988935,
+        "Solids": 0.0967186957703223,
+        "Conductivity": 0.07819074762669473,
+        "Turbidity": 0.07149734198279037,
+        "Organic_carbon": 0.06923366715846511,
+        "Trihalomethanes": 0.06794171112901744,
+        "CRI": 0.06762788757660149,
+        "ph_deviation": 0.05716856269936122
+    },
+    "baseline_accuracy": 0.6098901098901099
+}

@@ -11,14 +11,15 @@ if hasattr(sys.stdout, 'reconfigure'):
 steps = [
     ("Step 1: Data Loading & Cleaning", "01_data_loading_and_cleaning.py"),
     ("Step 2: Feature Engineering", "02_feature_engineering.py"),
-    ("Step 3: Model Training (RF vs LR)", "03_model_training.py"),
+    ("Step 3: Baseline Model Training (RF vs LR)", "03_model_training.py"),
     ("Step 4: Feature Importance & Diagnostic Plots", "04_feature_importance.py"),
-    ("Step 5: GIS Disease Outbreak Surveillance Engine", "gis_outbreak_mapper.py")
+    ("Step 5: GIS Disease Outbreak Surveillance Engine", "gis_outbreak_mapper.py"),
+    ("Step 6: Production 5-Fold CV & Model Serialization", "train_production_model.py")
 ]
 
 print("=" * 60)
 print("  WATERBORNE DISEASE OUTBREAK RISK PREDICTION (PRJ_441)")
-print("  ML + GIS End-to-End Pipeline Execution")
+print("  ML + GIS End-to-End Pipeline Execution (100% Milestone)")
 print("=" * 60)
 
 for title, script in steps:
@@ -42,7 +43,12 @@ print("   - water_potability_engineered.csv")
 print("   - feature_importance.png")
 print("   - correlation_heatmap.png")
 print("   - outbreak_risk_map.html (Interactive GIS Surveillance Map)")
+print("   - models/water_risk_rf_model.pkl (Serialized Production Model)")
+print("   - models/model_metadata.json (5-Fold CV Benchmarks)")
+print("   - IEEE_Project_Report_PRJ_441.md (Complete IEEE Report)")
 print("=" * 60)
+print("\n[!] TO LAUNCH THE INTERACTIVE REAL-TIME WEB DASHBOARD:")
+print("    streamlit run app.py\n")
 
 # Automatically open the GIS map in the browser
 map_path = os.path.abspath("outbreak_risk_map.html")
