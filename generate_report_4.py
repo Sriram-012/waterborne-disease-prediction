@@ -89,7 +89,7 @@ def build_report_4():
     p_guide.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_guide.paragraph_format.space_before = Pt(8)
     p_guide.paragraph_format.space_after = Pt(14)
-    rg0 = p_guide.add_run("Mrs. Seerat Ul Nisa\n")
+    rg0 = p_guide.add_run("Mr. Irfan Rajab Bhat\n")
     rg0.font.bold = True
     rg0.font.size = Pt(10)
     rg1 = p_guide.add_run("School of Computer Science and Engineering\nPresidency University, Bengaluru, India")

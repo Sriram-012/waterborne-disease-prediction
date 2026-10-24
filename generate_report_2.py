@@ -1237,6 +1237,7 @@ def build_report_2():
     add_p(
         "• Git Repository URL: https://github.com/Sriram-012/waterborne-disease-prediction\n"
         "• Author Commits: K Sriram (ramronz001@gmail.com)\n"
+        "• Project Guide: Mr. Irfan Rajab Bhat, Assistant Professor, PSCS, Presidency University\n"
         "• Plagiarism Index: Below 10% (Independently authored original academic text)\n"
         "• Academic Year: 2026-27 | Semester: VII | Course Code: CSS7102"
     )

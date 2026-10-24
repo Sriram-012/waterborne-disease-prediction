@@ -36,6 +36,7 @@ def generate_report_1():
         6: ("K SRIRAM - 20231COM0002", 18, True, WD_ALIGN_PARAGRAPH.CENTER, 1.15),
         7: ("HEMRAJ N A - 20231COM0055", 18, True, WD_ALIGN_PARAGRAPH.CENTER, 1.15),
         8: ("NAGBHOOSHAN - 20231COM0029", 18, True, WD_ALIGN_PARAGRAPH.CENTER, 1.15),
+        11: ("Mr. IRFAN RAJAB BHAT", 18, True, WD_ALIGN_PARAGRAPH.CENTER, 1.15),
         25: (
             "Certified that this report “Waterborne Disease Outbreak Risk Prediction and Spatial Surveillance System Using Machine Learning and GIS” is a bonafide work of “Mr. K Sriram (20231COM0002)”, “Mr. Hemraj N A (20231COM0055)”, “Mr. Nagbhooshan (20231COM0029)”, who have successfully carried out the project work and submitted the report for partial fulfilment of the requirements for the award of the degree of BACHELOR OF TECHNOLOGY in COMPUTER ENGINEERING during the academic year 2026-27.",
             12, False, WD_ALIGN_PARAGRAPH.JUSTIFY, 1.5
@@ -51,6 +52,10 @@ def generate_report_1():
         61: ("K Sriram                              20231COM0002                           K Sriram", 12, False, WD_ALIGN_PARAGRAPH.JUSTIFY, 1.15),
         62: ("Hemraj N A                            20231COM0055                           Hemraj N A", 12, False, WD_ALIGN_PARAGRAPH.JUSTIFY, 1.15),
         63: ("Nagbhooshan                           20231COM0029                           Nagbhooshan", 12, False, WD_ALIGN_PARAGRAPH.JUSTIFY, 1.15),
+        72: (
+            "We would like to sincerely thank our internal guide Mr. Irfan Rajab Bhat, Assistant Professor, Presidency School of Computer Science and Engineering, Presidency University, for his moral support, motivation, timely guidance and encouragement provided to us during the period of our project work.",
+            12, False, WD_ALIGN_PARAGRAPH.JUSTIFY, 1.5
+        ),
         75: ("K SRIRAM", 12, True, WD_ALIGN_PARAGRAPH.RIGHT, 1.15),
         76: ("HEMRAJ N A", 12, True, WD_ALIGN_PARAGRAPH.RIGHT, 1.15),
         77: ("NAGBHOOSHAN", 12, True, WD_ALIGN_PARAGRAPH.RIGHT, 1.15),
@@ -67,6 +72,23 @@ def generate_report_1():
             r.font.color.rgb = RGBColor(0, 0, 0)
             p.alignment = alignment
             p.paragraph_format.line_spacing = line_sp
+
+    # Update Table 0 (Bonafide Certificate Signatures - Cell 0, 0 for Guide)
+    if len(doc.tables) > 0:
+        t0 = doc.tables[0]
+        c0 = t0.cell(0, 0)
+        c0.text = ""
+        p0 = c0.paragraphs[0]
+        p0.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        p0.paragraph_format.line_spacing = 1.05
+        p0.paragraph_format.space_after = Pt(2)
+        r_g1 = p0.add_run("Mr. Irfan Rajab Bhat\n")
+        r_g1.font.name = "Times New Roman"
+        r_g1.font.size = Pt(10)
+        r_g1.font.bold = True
+        r_g2 = p0.add_run("Project Guide, PSCS\nPresidency University")
+        r_g2.font.name = "Times New Roman"
+        r_g2.font.size = Pt(10)
 
     out_file = "Report_1_Certificates_and_Front_Matter.docx"
     doc.save(out_file)
